@@ -1,28 +1,49 @@
 import React, { FormEvent, useRef } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = z.object({
+  email: z.string().min(3),
+  password: z.string().min(8),
+  confirmPassword: z.string().min(8),
+});
+
+type formData = z.infer<typeof schema>;
 
 const SignupForm = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const confirmPasswordRef = useRef<HTMLInputElement>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formData>({ resolver: zodResolver(schema) });
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    if (emailRef.current !== null) console.log(emailRef.current.value);
-  };
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="email">Email</label>
-        <input ref={emailRef} id="email" type="email" />
+        <input {...register("email")} id="email" type="email" />
+        {errors.email && <p className="text-red-600">{errors.email.message}</p>}
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input ref={passwordRef} id="password" type="password" />
+        <input {...register("password")} id="password" type="password" />
+        {errors.password && (
+          <p className="text-red-600">{errors.password.message}</p>
+        )}
       </div>
       <div>
         <label htmlFor="confirmPassword">Confirm</label>
-        <input ref={confirmPasswordRef} id="confirmPassword" type="password" />
+        <input
+          {...register("confirmPassword")}
+          id="confirmPassword"
+          type="password"
+        />
+        {errors.confirmPassword && (
+          <p className="text-red-600">{errors.confirmPassword.message}</p>
+        )}
       </div>
       <button type="submit">Submit</button>
     </form>
