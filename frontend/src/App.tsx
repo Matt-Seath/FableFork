@@ -9,7 +9,11 @@ const App = () => {
 
   return (
     <div>
-      <Button name="FireIcon" icon={<FaFire size="28" />} onSelect={handleOnSelect} />
+      <Button
+        name="FireIcon"
+        icon={<FaFire size="28" />}
+        onSelect={handleOnSelect}
+      />
     </div>
   );
 };
