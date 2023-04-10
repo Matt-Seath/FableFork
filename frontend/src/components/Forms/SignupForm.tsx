@@ -15,7 +15,7 @@ const SignupForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<formData>({ resolver: zodResolver(schema) });
 
   const onSubmit = (data: FieldValues) => console.log(data);
@@ -45,7 +45,9 @@ const SignupForm = () => {
           <p className="text-red-600">{errors.confirmPassword.message}</p>
         )}
       </div>
-      <button type="submit">Submit</button>
+      <button disabled={!isValid} type="submit">
+        Submit
+      </button>
     </form>
   );
 };
