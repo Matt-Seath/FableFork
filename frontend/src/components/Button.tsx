@@ -2,13 +2,19 @@ import React, { ReactNode } from "react";
 import ButtonIcon from "./ButtonIcon";
 
 interface Props {
+  name: string;
   icon: ReactNode;
+  onSelect: (name: string) => void;
 }
 
-const Button = ({ icon }: Props) => {
+const Button = ({ name, icon, onSelect }: Props) => {
   return (
-    <div>
-      <ButtonIcon icon={ icon } />
+    <div
+      onClick={() => {
+        onSelect(name);
+      }}
+    >
+      <ButtonIcon icon={icon} />
     </div>
   );
 };
