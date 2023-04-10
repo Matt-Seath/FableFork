@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Button from "./components/Button";
 import { FaFire } from "react-icons/fa";
-import Form from "./components/Form";
+import SignupForm from "./components/Forms/SignupForm";
 
 const App = () => {
   const handleOnSelect = (name: string) => {
@@ -15,7 +15,7 @@ const App = () => {
         icon={<FaFire size="28" />}
         onSelect={handleOnSelect}
       />
-      <Form name="test" type="number" />
+      <SignupForm />
     </div>
   );
 };
