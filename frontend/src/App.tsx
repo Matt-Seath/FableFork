@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Button from "./components/Button";
 import { FaFire } from "react-icons/fa";
 import SignupForm from "./components/Forms/SignupForm";
+import StoryForm from "./components/Forms/StoryForm";
 
 const App = () => {
   const handleOnSelect = (name: string) => {
@@ -16,6 +17,7 @@ const App = () => {
         onSelect={handleOnSelect}
       />
       <SignupForm />
+      <StoryForm />
     </div>
   );
 };
