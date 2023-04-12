@@ -1,10 +1,10 @@
 export interface Stats {
-  random: boolean;
-  luck: number;
-  strength: number;
-  charisma: number;
-  intelligence: number;
-  dexterity: number;
+  random?: boolean;
+  luck?: number;
+  strength?: number;
+  charisma?: number;
+  intelligence?: number;
+  dexterity?: number;
 }
 
 export interface Character {
@@ -17,7 +17,12 @@ export interface Character {
 }
 
 export interface StoryParams {
-  genre: string;
-  perspective: string;
+  fork?: string;
+  genre?: string;
+  perspective?: string;
   characters?: Character[];
+}
+
+export interface StoryFormProps {
+  storyParams: StoryParams;
 }
