@@ -2,20 +2,11 @@ import React, { ReactNode } from "react";
 import ButtonIcon from "./ButtonIcon";
 
 interface Props {
-  group: string;
-  children: ChildNode;
-  onSelect: (name: string) => void;
+  children: string;
 }
 
-const RadioButton = ({ group, onSelect }: Props) => {
-  return (
-    <div
-      onClick={() => {
-        onSelect();
-      }}
-    >
-    </div>
-  );
+const RadioButton = ({ children }: Props) => {
+  return <div>{children}</div>;
 };
 
 export default RadioButton;

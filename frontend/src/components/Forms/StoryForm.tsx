@@ -12,7 +12,7 @@ const StoryForm = ({ fork }: StoryParams) => {
 
   console.log(fork);
   return (
-    <form>
+    <>
       <div>
         <h3 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
           Storyline
@@ -75,11 +75,7 @@ const StoryForm = ({ fork }: StoryParams) => {
         type="radio"
         value="3rdPerson"
       />
-
-      <button disabled={false} type="submit">
-        Submit
-      </button>
-    </form>
+    </>
   );
 };
 

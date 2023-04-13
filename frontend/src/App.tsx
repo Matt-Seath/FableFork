@@ -4,6 +4,7 @@ import { FaFire } from "react-icons/fa";
 import SignupForm from "./components/Forms/SignupForm";
 import StoryForm from "./components/Forms/StoryForm";
 import { StoryParams } from "./common/types";
+import RadioButton from "./components/Button/RadioButton";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
