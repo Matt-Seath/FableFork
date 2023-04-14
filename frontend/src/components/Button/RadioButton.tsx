@@ -1,12 +1,24 @@
 import React, { ReactNode } from "react";
-import ButtonIcon from "./ButtonIcon";
 
 interface Props {
+  selectedItem?: string;
+  setSelectedItem?: any;
   children: string;
 }
 
-const RadioButton = ({ children }: Props) => {
-  return <div>{children}</div>;
+const RadioButton = ({ children, selectedItem }: Props) => {
+  const handleSelect = setSelectedItem();
+
+  return (
+    <li
+      onClick={handleSelect}
+      className={
+        selectedItem === children ? "radio-button" : "radio-button-selected"
+      }
+    >
+      {children}
+    </li>
+  );
 };
 
 export default RadioButton;

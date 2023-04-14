@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { StoryParams } from "../../common/types";
 import axios from "axios";
+import RadioButton from "../Button/RadioButton";
 
 const StoryForm = ({ fork }: StoryParams) => {
+  const [selectedItem, setSelectedItem] = useState("");
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
@@ -18,6 +20,12 @@ const StoryForm = ({ fork }: StoryParams) => {
           Storyline
         </h3>
         <ul className="grid w-full gap-6 md:grid-cols-2">
+          <RadioButton
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          >
+            Testy Test
+          </RadioButton>
           <li>
             <input
               className="hidden peer"
