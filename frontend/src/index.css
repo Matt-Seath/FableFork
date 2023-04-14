@@ -5,12 +5,12 @@
 @layer components {
     .button-icon {
         @apply relative flex items-center justify-center
-               h-12 w-12 mt-2 mb-2 mx-auto shadow-lg
-             bg-primary text-white
-               hover:bg-gray-600 hover:text-red-500
-               rounded-3xl hover:rounded-xl
-               transition-all duration-300 ease-linear
-               cursor-pointer;
+        h-12 w-12 mt-2 mb-2 mx-auto shadow-lg
+        bg-primary text-white
+        hover:bg-gray-600 hover:text-red-500
+        rounded-3xl hover:rounded-xl
+        transition-all duration-300 ease-linear
+        cursor-pointer;
     }
 
     .button-tooltip {
@@ -28,22 +28,22 @@
     }
 
     .radio-button {
-    @apply inline-flex items-center justify-between w-full 
-    p-5 text-gray-500 bg-white border border-gray-200 
-    rounded-lg cursor-pointer dark:hover:text-gray-300 
-    dark:border-gray-700 dark:peer-checked:text-blue-500 
-    peer-checked:border-blue-600 peer-checked:text-blue-600 
-    hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 
-    dark:bg-gray-800 dark:hover:bg-gray-700;
+        @apply inline-flex items-center justify-between w-full 
+        p-5 text-gray-500 bg-white border border-gray-200 
+        rounded-lg cursor-pointer dark:hover:text-gray-300 
+        dark:border-gray-700 dark:peer-checked:text-blue-500 
+        peer-checked:border-blue-600 peer-checked:text-blue-600 
+        hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 
+        dark:bg-gray-800 dark:hover:bg-gray-700;
     }
 
-    .radio-button-selected {
-    @apply inline-flex items-center justify-between w-full 
-    p-5 text-gray-500 bg-white border border-gray-200 
-    rounded-lg cursor-pointer dark:hover:text-gray-300 
-    dark:border-gray-100 dark:peer-checked:text-blue-100 
-    peer-checked:border-blue-600 peer-checked:text-blue-100 
-    hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 
-    dark:bg-gray-400 dark:hover:bg-gray-300;
+    .radio-button-active {
+        @apply inline-flex items-center justify-between w-full 
+        p-5 text-gray-500 bg-gray-100 border border-gray-200 
+        rounded-lg cursor-pointer dark:hover:text-gray-300 
+        dark:border-gray-100 dark:peer-checked:text-blue-100 
+        peer-checked:border-blue-600 peer-checked:text-blue-100 
+        hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 
+        dark:bg-gray-400 dark:hover:bg-gray-300;
     }
 }

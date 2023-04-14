@@ -1,20 +1,32 @@
-import React, { ReactNode } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { StoryParams } from "../../common/types";
 
 interface Props {
-  selectedItem?: string;
-  setSelectedItem?: any;
+  section: string;
+  index: number;
+  selectedIndex: number;
+  setSelectedIndex: Dispatch<SetStateAction<number>>;
+  onSelectItem: (choice: string) => void;
   children: string;
 }
 
-const RadioButton = ({ children, selectedItem }: Props) => {
-  const handleSelect = setSelectedItem();
-
+const RadioButton = ({
+  index,
+  children,
+  selectedIndex,
+  setSelectedIndex,
+  onSelectItem,
+}: Props) => {
   return (
     <li
-      onClick={handleSelect}
       className={
-        selectedItem === children ? "radio-button" : "radio-button-selected"
+        selectedIndex === index ? "radio-button-active" : "radio-button"
       }
+      key={index}
+      onClick={() => {
+        setSelectedIndex(index);
+        onSelectItem(children);
+      }}
     >
       {children}
     </li>

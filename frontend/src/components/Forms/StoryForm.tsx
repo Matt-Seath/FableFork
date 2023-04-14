@@ -6,13 +6,8 @@ import RadioButton from "../Button/RadioButton";
 
 const StoryForm = ({ fork }: StoryParams) => {
   const [selectedItem, setSelectedItem] = useState("");
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => console.log(res.data[0].name));
-  });
 
-  console.log(fork);
+  
   return (
     <>
       <div>

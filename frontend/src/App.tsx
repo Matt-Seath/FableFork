@@ -1,10 +1,7 @@
-import React, { Fragment, useState } from "react";
-import Button from "./components/Button";
-import { FaFire } from "react-icons/fa";
-import SignupForm from "./components/Forms/SignupForm";
-import StoryForm from "./components/Forms/StoryForm";
+import React, { useState } from "react";
 import { StoryParams } from "./common/types";
-import RadioButton from "./components/Button/RadioButton";
+import RadioGroup from "./components/Forms/RadioGroup";
+import { storyType, genres, perspectives, roles } from "./common/types";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
@@ -13,19 +10,36 @@ const App = () => {
     perspective: "firstPerson",
   });
 
-  const handleOnSelect = (name: string) => {
-    console.log({ name });
+  const handleClick = (choice: string) => {
+    console.log(choice);
   };
 
   return (
     <div>
-      <Button
-        name="FireIcon"
-        icon={<FaFire size="28" />}
-        onSelect={handleOnSelect}
+      <RadioGroup
+        handleClick={handleClick}
+        heading="Story Type"
+        items={storyType}
+        section="fork"
       />
-      <SignupForm />
-      <StoryForm fork={storyParams.fork} />
+      <RadioGroup
+        handleClick={handleClick}
+        heading="Genre"
+        items={genres}
+        section="genre"
+      />
+      <RadioGroup
+        handleClick={handleClick}
+        heading="Perspective"
+        items={perspectives}
+        section="perspective"
+      />
+      <RadioGroup
+        handleClick={handleClick}
+        heading="Roles"
+        items={roles}
+        section="role"
+      />
     </div>
   );
 };
