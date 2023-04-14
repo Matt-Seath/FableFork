@@ -1,12 +1,11 @@
 import { useState } from "react";
-import RadioButton from "../Button/RadioButton";
-import { StoryParams } from "../../common/types";
+import RadioButton from "../Buttons/RadioButton";
 
 interface RadioGroupProps {
   section: string;
   items: string[];
   heading: string;
-  handleClick: (choice: string) => void;
+  handleClick: (param: string, choice: string) => void;
 }
 
 const RadioGroup = ({

@@ -10,8 +10,12 @@ const App = () => {
     perspective: "firstPerson",
   });
 
-  const handleClick = (choice: string) => {
-    console.log(choice);
+  const handleClick = (param: string, choice: string) => {
+    setStoryParams({
+      ...storyParams,
+    });
+
+    console.log(param + ": " + choice);
   };
 
   return (

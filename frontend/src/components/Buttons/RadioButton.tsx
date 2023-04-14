@@ -6,11 +6,12 @@ interface Props {
   index: number;
   selectedIndex: number;
   setSelectedIndex: Dispatch<SetStateAction<number>>;
-  onSelectItem: (choice: string) => void;
+  onSelectItem: (param: string, choice: string) => void;
   children: string;
 }
 
 const RadioButton = ({
+  section,
   index,
   children,
   selectedIndex,
@@ -25,7 +26,7 @@ const RadioButton = ({
       key={index}
       onClick={() => {
         setSelectedIndex(index);
-        onSelectItem(children);
+        onSelectItem(section, children);
       }}
     >
       {children}

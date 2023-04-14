@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { StoryParams } from "../../common/types";
 import axios from "axios";
-import RadioButton from "../Button/RadioButton";
+import RadioButton from "../Buttons/RadioButton";
 
 const StoryForm = ({ fork }: StoryParams) => {
   const [selectedItem, setSelectedItem] = useState("");
 
-  
   return (
     <>
       <div>
