@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { StoryParams } from "./common/types";
 import RadioGroup from "./components/Forms/RadioGroup";
-import { storyType, genres, perspectives, submit } from "./common/types";
+import { storyline, genres, perspectives, submit } from "./common/types";
 import axios from "axios";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
-    fork: "",
+    storyline: "",
     genre: "",
     perspective: "",
   });
@@ -17,7 +17,7 @@ const App = () => {
       case "fork":
         setStoryParams({
           ...storyParams,
-          fork: choice,
+          storyline: choice,
         });
         break;
       case "genre":
@@ -44,7 +44,7 @@ const App = () => {
       {
         prompt: `${input}`,
         model: "text-davinci-003",
-        max_tokens: 50,
+        max_tokens: 200,
         temperature: 0,
       },
       {
@@ -59,7 +59,7 @@ const App = () => {
   };
 
   async function handleSubmit() {
-    const query: string = `Write a ${storyParams.genre} story based on ${storyParams.fork},
+    const query: string = `Write a ${storyParams.genre} story based on ${storyParams.storyline},
       in ${storyParams.perspective} perspective. `;
     console.log(query);
     try {
@@ -75,7 +75,7 @@ const App = () => {
       <RadioGroup
         handleClick={handleClick}
         heading="Story Type"
-        items={storyType}
+        items={storyline}
         section="fork"
         follows="initial"
       />
@@ -84,7 +84,7 @@ const App = () => {
         heading="Genre"
         items={genres}
         section="genre"
-        follows={storyParams.fork}
+        follows={storyParams.storyline}
       />
       <RadioGroup
         handleClick={handleClick}

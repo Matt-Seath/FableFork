@@ -19,18 +19,28 @@ const RadioButton = ({
   onSelectItem,
 }: Props) => {
   return (
-    <li
-      className={
-        selectedIndex === index ? "radio-button-active" : "radio-button"
-      }
-      key={index}
-      onClick={() => {
-        setSelectedIndex(index);
-        onSelectItem(section, children);
-      }}
-    >
-      {children}
-    </li>
+    <>
+      <li
+        className={
+          selectedIndex === index ? "radio-button-active" : "radio-button"
+        }
+        key={index}
+        onClick={() => {
+          setSelectedIndex(index);
+          onSelectItem(section, children);
+        }}
+      >
+        {children}
+      </li>
+      {selectedIndex === index &&
+        (children === "Other" || children === "Create New") && (
+          <input
+            type="text"
+            id="other"
+            placeholder={`Type custom ${section} here:`}
+          />
+        )}
+    </>
   );
 };
 

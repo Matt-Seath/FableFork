@@ -1,4 +1,4 @@
-export const storyType = ["Fork Existing", "Create New"]
+export const storyline = ["Give me Ideas", "Surprise Me"]
 export const perspectives = ["1st Person", "3rd Person"]
 export const genres = ["Comedy", "Romance", "Fantasy", "Horror", "Other"]
 export const roles = ["Antagonist", "Love Interest", "Other"]
@@ -83,7 +83,7 @@ export interface Character {
 }
 
 export interface StoryParams {
-  fork: string;
+  storyline: string;
   genre: string;
   perspective: string;
   characters?: Character[];
