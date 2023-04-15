@@ -1,28 +1,66 @@
 export const storyType = ["Fork Existing", "Create New"]
 export const perspectives = ["1st Person", "3rd Person"]
-export const genres = ["Comedy", "Romance", "Fantasy", "Horror"]
-export const roles = ["Antagonist", "Deuteragonist", "Hero", "Love Interest"]
-export const specials = [
-  "The ability to make any food taste like pizza",
-  "The power to teleport but only to places you've never been to before",
-  "The ability to turn invisible but only for 3 seconds at a time",
-  "The power to talk to plants, but they're all really bad listeners",
-  "The ability to predict the next song on the radio with 100% accuracy",
-  "The power to make anyone within a 10-foot radius dance uncontrollably",
-  "The ability to turn into a chair, but only once a day",
-  "The power to control traffic lights, but only on Sundays",
-  "The ability to instantly learn any language, but only for 5 minutes at a time",
-  "The power to summon a flock of seagulls at will",
-  "The ability to make people sneeze whenever you want",
-  "The power to turn any object into a banana",
-  "The power to make any hat you wear instantly become a top hat",
-  "The ability to create a duplicate of yourself, but they have opposite personalities",
-  "The power to make anyone within earshot start singing show tunes",
-  "The ability to summon a giant hamster to do your bidding",
-  "The power to make people forget what they were saying mid-sentence",
-  "The ability to turn any object into a rubber duck",
-  "The ability to control all electronic devices with your mind, but only when you're wearing a propeller hat",
-  "The power to summon a swarm of bees to do your bidding",
+export const genres = ["Comedy", "Romance", "Fantasy", "Horror", "Other"]
+export const roles = ["Antagonist", "Love Interest", "Other"]
+export const submit = ["Submit"]
+export const traits = [
+  "Only speaks in lame, cheesy one-liners",
+  "Is morbidly obese and struggles to do anything",
+  "Is horny",
+  "Has an army of midgets",
+  "Invents bizarre conspiracy theories",
+  "Has a strange fascination with pickles",
+  "Thinks they're a ninja",
+  "Carries a rubber chicken everywhere",
+  "Can't resist dad jokes",
+  "Is a self-proclaimed psychic",
+  "Refuses to use modern technology",
+  "Thinks they're a pirate",
+  "Is a terrible ventriloquist",
+  "Is overly dramatic",
+  "Has a bizarre obsession with cats",
+  "Dresses like a superhero",
+  "Obsessed with llamas",
+  "Thinks they can speak to animals",
+  "Only tells knock-knock jokes",
+  "Has a pet rock",
+  "Is an amateur stand-up comedian",
+  "Carries a briefcase full of rubber bands",
+  "Uses puns excessively",
+  "Has a collection of useless inventions",
+  "Constantly quotes movies",
+  "Always misuses idioms",
+  "Has a sock puppet",
+  "Obsessed with selfies",
+  "Collects rubber duckies",
+  "Has a strange obsession with mimes",
+  "Thinks they are a wizard",
+  "Is a terrible beatboxer",
+  "Wears a fake mustache",
+  "Obsessed with conspiracy theories",
+  "Wears a monocle",
+  "Is a terrible banjo player",
+  "Is a terrible kazoo player",
+  "Wears a top hat",
+  "Thinks they are a talk show host",
+  "Is a terrible mime",
+  "Has a constant case of diarrhea",
+  "Cannot stop picking their nose, no matter where they are",
+  "Can only communicate through interpretive dance",
+  "Has a shrine dedicated to their favorite conspiracy theory",
+  "Has an unnatural fear of fruit",
+  "Has a pet squirrel that they trained to steal from the neighbors",
+  "Believes that the moon landing was fake and that aliens built the pyramids",
+  "Thinks that all problems can be solved with a good game of rock-paper-scissors",
+  "Has a collection of over 100 rubber ducks that they use to stage reenactments of famous battles",
+  "Believes that the earth is flat and that all scientists are part of a global conspiracy to cover it up",
+  "Thinks that all vegetables are evil and must be destroyed",
+  "Refuses to wear anything that does not have a picture of a unicorn on it",
+  "Has a pet elephant that they let roam freely in their house",
+  "Thinks that all animals are out to get them",
+  "Believes that the government is controlling their thoughts through subliminal messages in their tap water",
+  "Has an imaginary twin that they have to consult with before making any major decisions",
+  "Believes that the world is going to end tomorrow and that they must prepare accordingly",
 ]
 
 
@@ -45,9 +83,9 @@ export interface Character {
 }
 
 export interface StoryParams {
-  fork?: string;
-  genre?: string;
-  perspective?: string;
+  fork: string;
+  genre: string;
+  perspective: string;
   characters?: Character[];
 }
 
