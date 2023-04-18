@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import { StoryParams } from "../../common/types";
+import { Dispatch, SetStateAction, useRef } from "react";
+import { inputFields } from "../../common/types";
 
 interface Props {
   section: string;
@@ -18,6 +18,7 @@ const RadioButton = ({
   setSelectedIndex,
   onSelectItem,
 }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <>
       <li
@@ -32,14 +33,17 @@ const RadioButton = ({
       >
         {children}
       </li>
-      {selectedIndex === index &&
-        (children === "Other" || children === "Create New") && (
-          <input
-            type="text"
-            id="other"
-            placeholder={`Type custom ${section} here:`}
-          />
-        )}
+      {selectedIndex === index && inputFields.includes(children) && (
+        <input
+          onChange={(event) => {
+            if (ref.current !== null) onSelectItem(section, ref.current.value);
+          }}
+          ref={ref}
+          type="text"
+          id="other"
+          placeholder={`Type custom ${section} here:`}
+        />
+      )}
     </>
   );
 };
