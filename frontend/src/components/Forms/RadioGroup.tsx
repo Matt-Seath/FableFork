@@ -23,12 +23,12 @@ const RadioGroup = ({
     <>
       {follows && (
         <>
-          <h3 className="text-center text-5xl m-8">{heading}</h3>
+          <h3 className="text-center text-5xl mt-32 mb-8">{heading}</h3>
           {subHeading && (
             <p className="text-center text-lg m-2">{subHeading}</p>
           )}
           {items.length === 0 && <p>No item found</p>}
-          <ul>
+          <ul className="flex flex-wrap justify-center">
             {items.map((item, index) => (
               <RadioButton
                 section={section}

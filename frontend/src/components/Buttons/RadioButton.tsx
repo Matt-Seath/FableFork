@@ -18,7 +18,6 @@ const RadioButton = ({
   setSelectedIndex,
   onSelectItem,
 }: Props) => {
-  const ref = useRef<HTMLInputElement>(null);
   return (
     <>
       <li
@@ -37,11 +36,10 @@ const RadioButton = ({
       </li>
       {selectedIndex === index && inputFields.includes(children) && (
         <input
-          className="radio-button"
+          className="radio-button-input"
           onChange={(event) => {
-            if (ref.current !== null) onSelectItem(section, ref.current.value);
+            onSelectItem(section, event.target.value);
           }}
-          ref={ref}
           type="text"
           id="other"
           placeholder={`Type custom ${section} here:`}

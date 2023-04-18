@@ -71,7 +71,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto px-9">
       <RadioGroup
         handleClick={handleClick}
         heading="Story Plot"
