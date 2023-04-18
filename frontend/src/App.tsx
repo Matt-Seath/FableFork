@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StoryParams } from "./common/types";
 import RadioGroup from "./components/Forms/RadioGroup";
 import { storyline, genres, perspectives, submit } from "./common/types";
@@ -107,7 +107,7 @@ const App = () => {
         follows={storyParams.perspective}
       />
       {story && (
-        <p className="text-center text-lg mt-10 mb-4 mx-12 p-8 text-white bg-slate-800">
+        <p className="text-center text-lg mt-36 mb-4 mx-12 p-8 text-white bg-slate-800">
           {story}
         </p>
       )}

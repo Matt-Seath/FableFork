@@ -32,7 +32,7 @@
 
     .radio-button-input {
         @apply inline-flex items-center justify-between w-8/12 m-1 
-        p-5 text-cyan-700 bg-white border border-gray-200 
+        p-5 text-cyan-600 bg-white border border-gray-200 
         rounded-lg cursor-pointer dark:hover:text-gray-300 
         dark:border-gray-700 dark:peer-checked:text-blue-500 
         peer-checked:border-blue-600 peer-checked:text-blue-600 
@@ -61,4 +61,12 @@
         dark:bg-gray-800 dark:hover:bg-gray-700;
     }
 
+    .submit-button-disabled {
+        @apply inline-flex font-bold justify-center w-80 m-1 
+        p-5 text-white bg-green-800 border border-gray-200 
+        rounded-lg cursor-pointer
+        dark:border-gray-700 dark:peer-checked:text-blue-500 
+        peer-checked:border-blue-600 peer-checked:text-blue-600 
+        dark:text-gray-200 dark:bg-gray-800
+    }
 }

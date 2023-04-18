@@ -64,10 +64,10 @@ const RadioButton = ({
             setDisabled(true);
             onSelectItem(section, children);
           }}
-          className="submit-button"
+          className={!disabled ? "submit-button" : "submit-button-disabled"}
           disabled={disabled}
         >
-          Submit
+          {!disabled ? "Submit" : "Generating Story.."}
         </button>
       )}
     </>
