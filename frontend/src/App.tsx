@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StoryParams } from "./common/types";
 import RadioGroup from "./components/Forms/RadioGroup";
 import { storyline, genres, perspectives, submit } from "./common/types";
@@ -11,6 +11,7 @@ const App = () => {
     perspective: "",
   });
   const [story, setStory] = useState("");
+  const bottom = useRef<null | HTMLDivElement>(null);
 
   const handleClick = (param: string, choice: string) => {
     switch (param) {
@@ -57,6 +58,8 @@ const App = () => {
     console.log(response.data);
     return response.data.choices[0].text;
   };
+
+  useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth" }));
 
   async function handleSubmit() {
     const query: string = `in 300 words or less, write a ${storyParams.genre} story based on ${storyParams.storyline},
@@ -106,6 +109,8 @@ const App = () => {
           {story}
         </p>
       )}
+      <div className="h-64" />
+      <div ref={bottom} />
     </div>
   );
 };

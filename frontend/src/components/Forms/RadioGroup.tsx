@@ -23,9 +23,9 @@ const RadioGroup = ({
     <>
       {follows && (
         <>
-          <h3 className="text-center text-5xl mt-32 mb-8">{heading}</h3>
+          <h3 className="text-center text-cyan-900 text-4xl font-extrabold mt-32 mb-8">{heading}</h3>
           {subHeading && (
-            <p className="text-center text-lg m-2">{subHeading}</p>
+            <p className="text-center text-slate-500 italic text-lg m-4">{subHeading}</p>
           )}
           {items.length === 0 && <p>No item found</p>}
           <ul className="flex flex-wrap justify-center">
