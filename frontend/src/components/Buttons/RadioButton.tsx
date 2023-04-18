@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { inputFields } from "../../common/types";
 
 interface Props {
@@ -19,11 +19,16 @@ const RadioButton = ({
   onSelectItem,
 }: Props) => {
   const [input, setInput] = useState("");
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <>
       <li
         className={
-          selectedIndex === index ? "radio-button-active" : "radio-button"
+          section === "submit"
+            ? "submit-button"
+            : selectedIndex === index
+            ? "radio-button-active"
+            : "radio-button"
         }
         key={index}
         onClick={() => {
@@ -37,6 +42,7 @@ const RadioButton = ({
       </li>
       {selectedIndex === index && inputFields.includes(children) && (
         <input
+          ref={ref}
           className="radio-button-input"
           onChange={(event) => {
             setInput(event.target.value);
@@ -44,6 +50,7 @@ const RadioButton = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               onSelectItem(section, input);
+              ref.current!.blur();
             }
           }}
           type="text"

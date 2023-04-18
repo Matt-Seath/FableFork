@@ -52,12 +52,12 @@
     }
 
     .submit-button {
-        @apply inline-flex items-center justify-between w-80 m-1 
-        p-5 text-gray-900 bg-white border border-gray-200 
+        @apply inline-flex font-bold justify-center w-80 m-1 
+        p-5 text-white bg-green-500 border border-gray-200 
         rounded-lg cursor-pointer dark:hover:text-gray-300 
         dark:border-gray-700 dark:peer-checked:text-blue-500 
         peer-checked:border-blue-600 peer-checked:text-blue-600 
-        hover:text-gray-600 hover:bg-gray-100 dark:text-gray-200 
+        hover:text-white hover:bg-green-600 dark:text-gray-200 
         dark:bg-gray-800 dark:hover:bg-gray-700;
     }
 

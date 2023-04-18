@@ -75,6 +75,7 @@ const App = () => {
 
   return (
     <div className="container mx-auto px-9">
+      <div className="h-36" />
       <RadioGroup
         handleClick={handleClick}
         heading="Story Plot"
@@ -86,6 +87,7 @@ const App = () => {
       <RadioGroup
         handleClick={handleClick}
         heading="Genre"
+        subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
         items={genres}
         section="genre"
         follows={storyParams.storyline}
