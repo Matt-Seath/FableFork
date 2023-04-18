@@ -28,13 +28,16 @@ const RadioButton = ({
         key={index}
         onClick={() => {
           setSelectedIndex(index);
-          onSelectItem(section, children);
+          if (!inputFields.includes(children)) {
+            onSelectItem(section, children);
+          }
         }}
       >
         {children}
       </li>
       {selectedIndex === index && inputFields.includes(children) && (
         <input
+          className="radio-button"
           onChange={(event) => {
             if (ref.current !== null) onSelectItem(section, ref.current.value);
           }}

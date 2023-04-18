@@ -44,7 +44,7 @@ const App = () => {
       {
         prompt: `${input}`,
         model: "text-davinci-003",
-        max_tokens: 200,
+        max_tokens: 300,
         temperature: 0,
       },
       {
@@ -59,8 +59,8 @@ const App = () => {
   };
 
   async function handleSubmit() {
-    const query: string = `Write a ${storyParams.genre} story based on ${storyParams.storyline},
-      in ${storyParams.perspective} perspective. `;
+    const query: string = `in 300 words or less, write a ${storyParams.genre} story based on ${storyParams.storyline},
+      in ${storyParams.perspective} perspective`;
     console.log(query);
     try {
       const story = await fetchData(query);
@@ -74,7 +74,8 @@ const App = () => {
     <div>
       <RadioGroup
         handleClick={handleClick}
-        heading="Story Type"
+        heading="Story Plot"
+        subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
         items={storyline}
         section="fork"
         follows="initial"
@@ -100,7 +101,11 @@ const App = () => {
         section="submit"
         follows={storyParams.perspective}
       />
-      {story && <p>{story}</p>}
+      {story && (
+        <p className="text-center text-lg mt-10 mb-4 mx-12 p-8 text-white bg-slate-800">
+          {story}
+        </p>
+      )}
     </div>
   );
 };

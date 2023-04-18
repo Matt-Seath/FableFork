@@ -28,7 +28,7 @@
     }
 
     .radio-button {
-        @apply inline-flex items-center justify-between w-full 
+        @apply inline-flex items-center justify-between w-80 m-1 
         p-5 text-gray-500 bg-white border border-gray-200 
         rounded-lg cursor-pointer dark:hover:text-gray-300 
         dark:border-gray-700 dark:peer-checked:text-blue-500 
@@ -38,12 +38,13 @@
     }
 
     .radio-button-active {
-        @apply inline-flex items-center justify-between w-full 
-        p-5 text-gray-500 bg-gray-100 border border-gray-200 
+        @apply inline-flex items-center justify-between w-80 m-1 
+        p-5 text-gray-500 bg-white border border-gray-200 
         rounded-lg cursor-pointer dark:hover:text-gray-300 
-        dark:border-gray-100 dark:peer-checked:text-blue-100 
-        peer-checked:border-blue-600 peer-checked:text-blue-100 
+        dark:border-gray-700 dark:peer-checked:text-blue-500 
+        peer-checked:border-blue-600 peer-checked:text-blue-600 
         hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 
-        dark:bg-gray-400 dark:hover:bg-gray-300;
+        dark:bg-gray-700 dark:hover:bg-gray-700;
+
     }
 }

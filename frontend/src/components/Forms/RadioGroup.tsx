@@ -5,11 +5,13 @@ interface RadioGroupProps {
   section: string;
   items: string[];
   heading: string;
+  subHeading?: string;
   follows?: string;
   handleClick: (param: string, choice: string) => void;
 }
 
 const RadioGroup = ({
+  subHeading,
   section,
   items,
   follows,
@@ -21,7 +23,10 @@ const RadioGroup = ({
     <>
       {follows && (
         <>
-          <h3 className="text-center text-5xl mt-10">{heading}</h3>
+          <h3 className="text-center text-5xl m-8">{heading}</h3>
+          {subHeading && (
+            <p className="text-center text-lg m-2">{subHeading}</p>
+          )}
           {items.length === 0 && <p>No item found</p>}
           <ul>
             {items.map((item, index) => (
