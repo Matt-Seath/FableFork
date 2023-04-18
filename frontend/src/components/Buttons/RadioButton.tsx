@@ -55,7 +55,7 @@ const RadioButton = ({
           }}
           type="text"
           id="other"
-          placeholder={`Type custom ${section} here:`}
+          placeholder={`Type custom ${section} here and hit Enter:`}
         />
       )}
     </>

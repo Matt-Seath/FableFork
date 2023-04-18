@@ -1,6 +1,6 @@
 export const storyline = ["Give me Ideas", "Surprise Me", "Custom"]
-export const perspectives = ["1st Person", "3rd Person"]
-export const genres = ["Comedy", "Romance", "Fantasy", "Horror", "Other"]
+export const perspectives = ["Default", "1st Person", "3rd Person"]
+export const genres = ["Default", "Comedy", "Horror", "Romance", "Other"]
 export const roles = ["Antagonist", "Love Interest", "Other"]
 export const submit = ["Submit"]
 export const inputFields = ["Create new", "Other", "Custom"]

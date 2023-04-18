@@ -15,7 +15,7 @@ const App = () => {
 
   const handleClick = (param: string, choice: string) => {
     switch (param) {
-      case "fork":
+      case "plot":
         setStoryParams({
           ...storyParams,
           storyline: choice,
@@ -81,7 +81,7 @@ const App = () => {
         heading="Story Plot"
         subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
         items={storyline}
-        section="fork"
+        section="plot"
         follows="initial"
       />
       <RadioGroup
@@ -111,7 +111,7 @@ const App = () => {
           {story}
         </p>
       )}
-      <div className="h-64" />
+      <div className="h-36" />
       <div ref={bottom} />
     </div>
   );
