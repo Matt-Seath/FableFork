@@ -1,23 +1,23 @@
 import { useState } from "react";
 import RadioButton from "../Buttons/RadioButton";
 
-interface RadioGroupProps {
+interface StoryPromptProps {
   section: string;
   items: string[];
   heading: string;
   subHeading?: string;
-  follows?: string;
+  follows?: string | boolean;
   handleClick: (param: string, choice: string) => void;
 }
 
-const RadioGroup = ({
+const StoryPrompt = ({
   subHeading,
   section,
   items,
   follows,
   heading,
   handleClick,
-}: RadioGroupProps) => {
+}: StoryPromptProps) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   return (
     <>
@@ -52,4 +52,4 @@ const RadioGroup = ({
   );
 };
 
-export default RadioGroup;
+export default StoryPrompt;

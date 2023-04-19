@@ -19,22 +19,22 @@ const Queries = ({plot, genre, perspective}: StoryParams) => {
 
   switch (genre) {
     case ("Horror"):
-      genreSegment = "in the style of a Steven King novel"
+      genreSegment = "as a horror story in the style of a Steven King novel"
       break;
     case ("Romance"):
-      genreSegment = "in the style of a Nora Roberts novel"
+      genreSegment = "as a romance story in the style of a Nora Roberts novel"
       break;
     case ("Comedy"):
-      genreSegment = "where silly things happen like in the Naked Gun movies"
+      genreSegment = "as a funny story where silly things happen like in the Naked Gun movies"
       break;
     default:
-      genreSegment = `in the style of a ${genre} novel`
+      genreSegment = `as a ${genre} story in the style of a ${genre} novel`
       break;
   }
 
   switch (perspective) {
     case ("1st Person"):
-      perspectiveSegment = "where it is written from the main characters perspective"
+      perspectiveSegment = "where it is written as if the reader is the protagonist (addressed as 'you')"
       break;
     case ("3rd Person"):
       perspectiveSegment = "in 3rd person perspective"

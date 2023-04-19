@@ -67,7 +67,7 @@ const RadioButton = ({
           className={!disabled ? "submit-button" : "submit-button-disabled"}
           disabled={disabled}
         >
-          {!disabled ? "Submit" : "Generating Story.."}
+          {!disabled ? children : "Generating Story.."}
         </button>
       )}
     </>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { StoryParams } from "./common/types";
-import RadioGroup from "./components/Forms/RadioGroup";
+import { StoryParams, createNew } from "./common/types";
+import StoryPrompt from "./components/Forms/StoryPrompt";
 import Queries from "./components/Requests/queries";
 import InitialRequest from "./components/Requests/InitialRequest";
 import { storyline, genres, perspectives, submit } from "./common/types";
@@ -42,7 +42,7 @@ const App = () => {
   return (
     <div className="container mx-auto px-9">
       <div className="h-36" />
-      <RadioGroup
+      <StoryPrompt
         handleClick={handleClick}
         heading="Story Plot"
         subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
@@ -50,7 +50,7 @@ const App = () => {
         section="plot"
         follows="initial"
       />
-      <RadioGroup
+      <StoryPrompt
         handleClick={handleClick}
         heading="Genre"
         subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
@@ -58,7 +58,7 @@ const App = () => {
         section="genre"
         follows={storyParams.plot}
       />
-      <RadioGroup
+      <StoryPrompt
         handleClick={handleClick}
         heading="Perspective"
         subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
@@ -67,7 +67,7 @@ const App = () => {
         follows={storyParams.genre}
       />
       {!generated && (
-        <RadioGroup
+        <StoryPrompt
           handleClick={handleSubmit}
           heading=""
           items={submit}
@@ -80,6 +80,13 @@ const App = () => {
           {story}
         </p>
       )}
+      <StoryPrompt
+        handleClick={handleSubmit}
+        heading=""
+        items={createNew}
+        section="Create New"
+        follows={generated}
+      />
       <div className="h-36" />
       <div ref={bottom} />
     </div>

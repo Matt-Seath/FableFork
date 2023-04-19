@@ -3,6 +3,7 @@ export const perspectives = ["1st Person", "3rd Person", "Default"]
 export const genres = ["Default", "Comedy", "Horror", "Romance", "Other"]
 export const roles = ["Antagonist", "Love Interest", "Other"]
 export const submit = ["Submit"]
+export const createNew = ["Create New"]
 export const inputFields = ["Create new", "Other", "Custom"]
 
 export interface Stats {
