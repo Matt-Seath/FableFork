@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { StoryParams } from "./common/types";
 import RadioGroup from "./components/Forms/RadioGroup";
+import Queries from "./components/Requests/queries";
+import InitialRequest from "./components/Requests/InitialRequest";
 import { storyline, genres, perspectives, submit } from "./common/types";
-import axios from "axios";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
@@ -37,36 +38,13 @@ const App = () => {
     console.log(storyParams);
   };
 
-  const fetchData = async (input: string) => {
-    const orgId: string = import.meta.env.VITE_ORG_ID;
-    const apiKey: string = import.meta.env.VITE_API_KEY;
-    const response = await axios.post(
-      "https://api.openai.com/v1/completions",
-      {
-        prompt: `${input}`,
-        model: "text-davinci-003",
-        max_tokens: 300,
-        temperature: 0,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
-    );
-    console.log(response.data);
-    return response.data.choices[0].text;
-  };
-
   useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth" }));
 
   async function handleSubmit() {
-    const query: string = `in 300 words or less, write a ${storyParams.genre} story based on ${storyParams.storyline},
-      in ${storyParams.perspective} perspective`;
+    const query: string = Queries(storyParams);
     console.log(query);
     try {
-      const story = await fetchData(query);
+      const story = await InitialRequest(query);
       setStory(story);
     } catch (error) {
       console.log(error);
@@ -95,6 +73,7 @@ const App = () => {
       <RadioGroup
         handleClick={handleClick}
         heading="Perspective"
+        subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
         items={perspectives}
         section="perspective"
         follows={storyParams.genre}
