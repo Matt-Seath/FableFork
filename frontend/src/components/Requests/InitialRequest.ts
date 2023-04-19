@@ -18,8 +18,7 @@ import axios from "axios";
         },
       }
     );
-    console.log(response.data);
-    return response.data.choices[0].text;
+    return JSON.parse(response.data.choices[0].text)
   };
 
 export default InitialRequest;

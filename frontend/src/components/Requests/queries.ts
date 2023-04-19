@@ -79,8 +79,11 @@ Here you may to replace the chapter titles and action to adjust the theme of the
   const shortExample: string = `
   Generate a short story ${plotSegment} ${genreSegment}, ${perspectiveSegment}
   `
+  const test: string = `
+  Generate a short story segment ${plotSegment} ${genreSegment}, ${perspectiveSegment}. Your response will be a json object of the following key/value pairs and nothing else: "story": string, "choices": string[]. The generated story will be value of "story", and "choices" will contain an array of 3 choices the reader can choose from to continue the story.
+  `
 
-  return shortExample
+  return test
 }
 
 export default Queries;

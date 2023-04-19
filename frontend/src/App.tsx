@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { StoryParams } from "./common/types";
+import { StoryParams, GPTResponse } from "./common/types";
 import StoryPrompt from "./components/Forms/StoryPrompt";
 import Queries from "./components/Requests/queries";
 import InitialRequest from "./components/Requests/InitialRequest";
@@ -12,7 +12,9 @@ const App = () => {
     genre: "",
     perspective: "",
   });
-  const [story, setStory] = useState("");
+  const [story, setStory] = useState<GPTResponse>({
+    story: "",
+  });
   const [generated, hasGenerated] = useState(false);
   const bottom = useRef<null | HTMLDivElement>(null);
   const { plots, genres, perspectives, submit, createNew } = PromptParams;
@@ -30,7 +32,7 @@ const App = () => {
   const handleReset = () => {
     const blank = {} as StoryParams;
     setStoryParams(blank);
-    setStory("");
+    setStory({ story: "", choices: [] });
     hasGenerated(false);
   };
 
@@ -38,8 +40,8 @@ const App = () => {
     const query: string = Queries(storyParams);
     console.log(query);
     try {
-      const story = await InitialRequest(query);
-      setStory(story);
+      const response: GPTResponse = await InitialRequest(query);
+      setStory(response);
       hasGenerated(true);
     } catch (error) {
       console.log(error);
@@ -51,54 +53,65 @@ const App = () => {
   return (
     <div className="container mx-auto px-9">
       <div className="h-36" />
-      <StoryPrompt
-        handleClick={handleClick}
-        heading="Story Plot"
-        subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
-        items={plots}
-        section="plot"
-        follows="initial"
-      />
-      {(storyParams.plot === "Give Me Ideas" ||
-        Plots.includes(storyParams.plot)) && (
-        <StoryPrompt
-          handleClick={handleClick}
-          items={Plots}
-          section="plot"
-          follows="initial"
-        />
-      )}
-      <StoryPrompt
-        handleClick={handleClick}
-        heading="Genre"
-        subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
-        items={genres}
-        section="genre"
-        follows={storyParams.plot && storyParams.plot !== "Give Me Ideas"}
-      />
-      <StoryPrompt
-        handleClick={handleClick}
-        heading="Perspective"
-        subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
-        items={perspectives}
-        section="perspective"
-        follows={storyParams.genre && storyParams.plot}
-      />
       {!generated && (
+        <>
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Story Plot"
+            subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
+            items={plots}
+            section="plot"
+            follows="initial"
+          />
+          {(storyParams.plot === "Give Me Ideas" ||
+            Plots.includes(storyParams.plot)) && (
+            <StoryPrompt
+              handleClick={handleClick}
+              items={Plots}
+              section="plot"
+              follows="initial"
+            />
+          )}
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Genre"
+            subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
+            items={genres}
+            section="genre"
+            follows={storyParams.plot && storyParams.plot !== "Give Me Ideas"}
+          />
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Perspective"
+            subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
+            items={perspectives}
+            section="perspective"
+            follows={storyParams.genre && storyParams.plot}
+          />
+          <StoryPrompt
+            handleClick={handleSubmit}
+            heading=""
+            items={submit}
+            section="submit"
+            follows={
+              storyParams.perspective && storyParams.genre && storyParams.plot
+            }
+          />
+        </>
+      )}
+      {story.story && (
+        <p className="text-center text-lg mt-36 mb-4 mx-12 p-8 text-white bg-slate-800">
+          {story.story}
+        </p>
+      )}
+      {story.choices && (
         <StoryPrompt
           handleClick={handleSubmit}
-          heading=""
-          items={submit}
-          section="submit"
-          follows={
-            storyParams.perspective && storyParams.genre && storyParams.plot
-          }
+          subHeading="Choose from one the following actions to proceed:"
+          items={story.choices}
+          section="choices"
+          follows={true}
         />
-      )}
-      {story && (
-        <p className="text-center text-lg mt-36 mb-4 mx-12 p-8 text-white bg-slate-800">
-          {story}
-        </p>
       )}
       <StoryPrompt
         handleClick={handleReset}

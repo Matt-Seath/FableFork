@@ -2,6 +2,11 @@ export type Writable<T> = {
     -readonly [P in keyof T]: T[P];
 };
 
+export interface GPTResponse {
+  story: string;
+  choices?: string[];
+}
+
 export interface Params {
   inputFields?: string[];
   plots?: string[];
