@@ -9,31 +9,42 @@ const Queries = ({plot, genre, perspective}: StoryParams) => {
 
   switch (plot) {
     case ("Surprise Me"):
-      plotSegment = RandomItem(Plots)
+      let randomPlot = RandomItem(Plots)
+      plotSegment = `based on this scene: ${randomPlot}`
+      break;
     default:
-      plotSegment = plot
+      plotSegment = `based on the following: ${plot}`
+      break;
   }
 
   switch (genre) {
     case ("Horror"):
       genreSegment = "in the style of a Steven King novel"
+      break;
     case ("Romance"):
       genreSegment = "in the style of a Nora Roberts novel"
+      break;
     case ("Comedy"):
       genreSegment = "where silly things happen like in the Naked Gun movies"
+      break;
     default:
       genreSegment = `in the style of a ${genre} novel`
+      break;
   }
 
   switch (perspective) {
     case ("1st Person"):
       perspectiveSegment = "where it is written from the main characters perspective"
+      break;
     case ("3rd Person"):
       perspectiveSegment = "in 3rd person perspective"
+      break;
     case ("Default"):
       perspectiveSegment = ""
+      break;
   }
-    return `
+
+  const outlineGenerationPrompt: string = `
 "ChatGPT will generate a book ${plotSegment} ${genreSegment}, ${perspectiveSegment} with 2000-7000 words, consisting of chapters that are 3,000 words each. The outline should include a list of all chapters with a list of actions happening in each chapter. You would like twists included in the chapter outlines, but you want the story to be generated from scratch by ChatGPT. The book is for your personal reading only and should be a surprise to you, similar to purchasing a random book from Amazon.
 
 Down below is an example of how the chapters shall be generated. Do not generate a title. Come up with a different story, as this example only chowcases the format:
@@ -64,6 +75,12 @@ Chapter 3: The Investigation
 
 Here you may to replace the chapter titles and action to adjust the theme of the book. I noticed that the book I generated had a different story, but still had an "artifact" as the main plot. `   
 ;
+
+  const shortExample: string = `
+  Generate a short story ${plotSegment} ${genreSegment}, ${perspectiveSegment}
+  `
+
+  return shortExample
 }
 
 export default Queries;
