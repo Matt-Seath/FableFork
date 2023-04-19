@@ -8,7 +8,7 @@ import axios from "axios";
       {
         prompt: `${input}`,
         model: "text-davinci-003",
-        max_tokens: 300,
+        max_tokens: 800,
         temperature: 0,
       },
       {

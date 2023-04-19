@@ -1,5 +1,5 @@
 import { StoryParams } from "../../common/types";
-import { RandomItem } from "../../common/utils";
+import { randomItem } from "../../common/utils";
 import Plots from "../../assets/data/Plots.json"
 
 const Queries = ({plot, genre, perspective}: StoryParams) => {
@@ -9,7 +9,7 @@ const Queries = ({plot, genre, perspective}: StoryParams) => {
 
   switch (plot) {
     case ("Surprise Me"):
-      let randomPlot = RandomItem(Plots)
+      let randomPlot = randomItem(Plots)
       plotSegment = `based on this scene: ${randomPlot}`
       break;
     default:

@@ -1,0 +1,16 @@
+{
+    "inputFields": 
+        ["Create new", "Other", "Custom"],
+    "plots": 
+        ["Give me Ideas", "Surprise Me", "Custom"],
+    "perspectives": 
+        ["1st Person", "3rd Person", "Default"],
+    "genres": 
+        ["Default", "Comedy", "Horror", "Romance", "Other"],
+    "roles": 
+        ["Antagonist", "Love Interest", "Other"],
+    "submit":
+        ["Submit"],
+    "createNew": 
+        ["Create New"]
+}

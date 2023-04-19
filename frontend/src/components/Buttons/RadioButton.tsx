@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { inputFields } from "../../common/types";
+import Params from "../../assets/data/Params.json";
 
 interface Props {
   section: string;
@@ -32,14 +32,14 @@ const RadioButton = ({
             key={index}
             onClick={() => {
               setSelectedIndex(index);
-              if (!inputFields.includes(children)) {
+              if (!Params.inputFields.includes(children)) {
                 onSelectItem(section, children);
               }
             }}
           >
             {children}
           </li>
-          {selectedIndex === index && inputFields.includes(children) && (
+          {selectedIndex === index && Params.inputFields.includes(children) && (
             <input
               ref={ref}
               className="radio-button-input"
