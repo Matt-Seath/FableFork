@@ -1,9 +1,8 @@
-import { StoryParams } from "./types";
-
 export function log() {
     console.log('log');
 }
 
-export const ParseInput = () => {
-   return "hi" 
+export const RandomItem = (list: any[]) => {
+    const value = Math.floor(Math.random() * list.length)
+   return list[value]
 }
