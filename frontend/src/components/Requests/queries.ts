@@ -1,8 +1,8 @@
 import { StoryParams } from "../../common/types";
 
-const Queries = ({storyline, genre, perspective}: StoryParams) => {
+const Queries = ({plot, genre, perspective}: StoryParams) => {
 
-    return `in 300 words or less, write a ${genre} story based on ${storyline},
+    return `in 300 words or less, write a ${genre} story based on ${plot},
       in ${perspective} perspective`;
 
 }

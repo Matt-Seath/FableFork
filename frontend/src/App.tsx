@@ -7,7 +7,7 @@ import { storyline, genres, perspectives, submit } from "./common/types";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
-    storyline: "",
+    plot: "",
     genre: "",
     perspective: "",
   });
@@ -15,25 +15,11 @@ const App = () => {
   const bottom = useRef<null | HTMLDivElement>(null);
 
   const handleClick = (param: string, choice: string) => {
-    switch (param) {
-      case "plot":
-        setStoryParams({
-          ...storyParams,
-          storyline: choice,
-        });
-        break;
-      case "genre":
-        setStoryParams({
-          ...storyParams,
-          genre: choice,
-        });
-        break;
-      case "perspective":
-        setStoryParams({
-          ...storyParams,
-          perspective: choice,
-        });
-        break;
+    if (["plot", "genre", "perspective"].includes(param)) {
+      setStoryParams({
+        ...storyParams,
+        [param]: choice,
+      });
     }
     console.log(storyParams);
   };
@@ -68,7 +54,7 @@ const App = () => {
         subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
         items={genres}
         section="genre"
-        follows={storyParams.storyline}
+        follows={storyParams.plot}
       />
       <RadioGroup
         handleClick={handleClick}

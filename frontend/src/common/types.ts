@@ -84,7 +84,7 @@ export interface Character {
 }
 
 export interface StoryParams {
-  storyline: string;
+  plot: string;
   genre: string;
   perspective: string;
   characters?: Character[];
