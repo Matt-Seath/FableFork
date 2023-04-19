@@ -12,6 +12,7 @@ const App = () => {
     perspective: "",
   });
   const [story, setStory] = useState("");
+  const [generated, hasGenerated] = useState(false);
   const bottom = useRef<null | HTMLDivElement>(null);
 
   const handleClick = (param: string, choice: string) => {
@@ -32,6 +33,7 @@ const App = () => {
     try {
       const story = await InitialRequest(query);
       setStory(story);
+      hasGenerated(true);
     } catch (error) {
       console.log(error);
     }
@@ -64,13 +66,15 @@ const App = () => {
         section="perspective"
         follows={storyParams.genre}
       />
-      <RadioGroup
-        handleClick={handleSubmit}
-        heading=""
-        items={submit}
-        section="submit"
-        follows={storyParams.perspective}
-      />
+      {!generated && (
+        <RadioGroup
+          handleClick={handleSubmit}
+          heading=""
+          items={submit}
+          section="submit"
+          follows={storyParams.perspective}
+        />
+      )}
       {story && (
         <p className="text-center text-lg mt-36 mb-4 mx-12 p-8 text-white bg-slate-800">
           {story}
