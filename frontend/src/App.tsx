@@ -3,7 +3,8 @@ import { StoryParams } from "./common/types";
 import StoryPrompt from "./components/Forms/StoryPrompt";
 import Queries from "./components/Requests/queries";
 import InitialRequest from "./components/Requests/InitialRequest";
-import Params from "./assets/data/Params.json";
+import PromptParams from "./assets/data/PromptParams.json";
+import Plots from "./assets/data/Plots.json";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
@@ -14,6 +15,7 @@ const App = () => {
   const [story, setStory] = useState("");
   const [generated, hasGenerated] = useState(false);
   const bottom = useRef<null | HTMLDivElement>(null);
+  const { plots, genres, perspectives, submit, createNew } = PromptParams;
 
   const handleClick = (param: string, choice: string) => {
     if (["plot", "genre", "perspective"].includes(param)) {
@@ -25,7 +27,12 @@ const App = () => {
     console.log(storyParams);
   };
 
-  useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth" }));
+  const handleReset = () => {
+    const blank = {} as StoryParams;
+    setStoryParams(blank);
+    setStory("");
+    hasGenerated(false);
+  };
 
   async function handleSubmit() {
     const query: string = Queries(storyParams);
@@ -39,14 +46,7 @@ const App = () => {
     }
   }
 
-  const handleReset = () => {
-    const blank = {} as StoryParams;
-    setStoryParams(blank);
-    setStory("");
-    hasGenerated(false);
-    console.log(blank);
-    console.log(storyParams);
-  };
+  useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth" }));
 
   return (
     <div className="container mx-auto px-9">
@@ -55,33 +55,44 @@ const App = () => {
         handleClick={handleClick}
         heading="Story Plot"
         subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
-        items={Params.plots}
+        items={plots}
         section="plot"
         follows="initial"
       />
+      {(storyParams.plot === "Give Me Ideas" ||
+        Plots.includes(storyParams.plot)) && (
+        <StoryPrompt
+          handleClick={handleClick}
+          items={Plots}
+          section="plot"
+          follows="initial"
+        />
+      )}
       <StoryPrompt
         handleClick={handleClick}
         heading="Genre"
         subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
-        items={Params.genres}
+        items={genres}
         section="genre"
-        follows={storyParams.plot}
+        follows={storyParams.plot && storyParams.plot !== "Give Me Ideas"}
       />
       <StoryPrompt
         handleClick={handleClick}
         heading="Perspective"
         subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
-        items={Params.perspectives}
+        items={perspectives}
         section="perspective"
-        follows={storyParams.genre}
+        follows={storyParams.genre && storyParams.plot}
       />
       {!generated && (
         <StoryPrompt
           handleClick={handleSubmit}
           heading=""
-          items={Params.submit}
+          items={submit}
           section="submit"
-          follows={storyParams.perspective}
+          follows={
+            storyParams.perspective && storyParams.genre && storyParams.plot
+          }
         />
       )}
       {story && (
@@ -92,7 +103,7 @@ const App = () => {
       <StoryPrompt
         handleClick={handleReset}
         heading=""
-        items={Params.createNew}
+        items={createNew}
         section="Create New"
         follows={generated}
       />

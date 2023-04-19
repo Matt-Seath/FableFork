@@ -4,7 +4,7 @@ import RadioButton from "../Buttons/RadioButton";
 interface StoryPromptProps {
   section: string;
   items: string[];
-  heading: string;
+  heading?: string;
   subHeading?: string;
   follows?: string | boolean;
   handleClick: (param: string, choice: string) => void;

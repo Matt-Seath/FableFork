@@ -2,6 +2,16 @@ export type Writable<T> = {
     -readonly [P in keyof T]: T[P];
 };
 
+export interface Params {
+  inputFields?: string[];
+  plots?: string[];
+  perspectives?: string[];
+  genres?: string[];
+  roles?: string[];
+  submit?: string[];
+  createNew?: string[];
+}
+
 export interface Stats {
   random?: boolean;
   luck?: number;

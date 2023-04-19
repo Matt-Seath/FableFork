@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import Params from "../../assets/data/Params.json";
+import PromptParams from "../../assets/data/PromptParams.json";
 
 interface Props {
   section: string;
@@ -32,31 +32,32 @@ const RadioButton = ({
             key={index}
             onClick={() => {
               setSelectedIndex(index);
-              if (!Params.inputFields.includes(children)) {
+              if (!PromptParams.inputFields.includes(children)) {
                 onSelectItem(section, children);
-              }
+              } else onSelectItem(section, "");
             }}
           >
             {children}
           </li>
-          {selectedIndex === index && Params.inputFields.includes(children) && (
-            <input
-              ref={ref}
-              className="radio-button-input"
-              onChange={(event) => {
-                setInput(event.target.value);
-              }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  onSelectItem(section, input);
-                  ref.current!.blur();
-                }
-              }}
-              type="text"
-              id="other"
-              placeholder={`Type custom ${section} here and hit Enter:`}
-            />
-          )}
+          {selectedIndex === index &&
+            PromptParams.inputFields.includes(children) && (
+              <input
+                ref={ref}
+                className="radio-button-input"
+                onChange={(event) => {
+                  setInput(event.target.value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    onSelectItem(section, input);
+                    ref.current!.blur();
+                  }
+                }}
+                type="text"
+                id="other"
+                placeholder={`Type custom ${section} here and hit Enter:`}
+              />
+            )}
         </>
       ) : (
         <button
