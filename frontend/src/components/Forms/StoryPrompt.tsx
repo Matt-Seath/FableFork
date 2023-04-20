@@ -6,7 +6,7 @@ interface StoryPromptProps {
   items: string[];
   heading?: string;
   subHeading?: string;
-  follows?: string | boolean;
+  displaysWhen?: string | boolean;
   handleClick: (param: string, choice: string) => void;
 }
 
@@ -14,14 +14,14 @@ const StoryPrompt = ({
   subHeading,
   section,
   items,
-  follows,
+  displaysWhen,
   heading,
   handleClick,
 }: StoryPromptProps) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   return (
     <>
-      {follows && (
+      {displaysWhen && (
         <>
           <h3 className="text-center text-lime-500 text-4xl font-extrabold mt-32 mb-8">
             {heading}

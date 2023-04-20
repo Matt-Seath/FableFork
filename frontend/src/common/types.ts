@@ -12,7 +12,6 @@ export interface Params {
   inputFields?: string[];
   plots?: string[];
   perspectives?: string[];
-  genres?: string[];
   roles?: string[];
   submit?: string[];
   createNew?: string[];
@@ -38,7 +37,7 @@ export interface Character {
 
 export interface StoryParams {
   plot: string;
-  genre: string;
+  twist: string;
   perspective: string;
   characters?: Character[];
 }

@@ -4,21 +4,23 @@ import StoryPrompt from "./components/Forms/StoryPrompt";
 import Queries from "./components/Requests/queries";
 import InitialRequest from "./components/Requests/InitialRequest";
 import PromptParams from "./assets/data/PromptParams.json";
-import Plots from "./assets/data/Plots.json";
+import PlotsList from "./assets/data/Plots.json";
+import TwistsList from "./assets/data/Twists.json";
 
 const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
     plot: "",
-    genre: "",
+    twist: "",
     perspective: "",
   });
   const [story, setStory] = useState<GPTResponse[]>([]);
   const [generated, hasGenerated] = useState<boolean>(false);
   const bottom = useRef<null | HTMLDivElement>(null);
-  const { plots, genres, perspectives, submit, createNew } = PromptParams;
+  const { plots, genres, twists, perspectives, submit, createNew } =
+    PromptParams;
 
   const handleClick = (param: string, choice: string) => {
-    if (["plot", "genre", "perspective"].includes(param)) {
+    if (["plot", "twist", "perspective"].includes(param)) {
       setStoryParams({
         ...storyParams,
         [param]: choice,
@@ -56,28 +58,48 @@ const App = () => {
         <>
           <StoryPrompt
             handleClick={handleClick}
-            heading="Story Plot"
+            heading="Story "
             subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
             items={plots}
             section="plot"
-            follows="initial"
+            displaysWhen={!generated}
           />
-          {(storyParams.plot === "Give Me Ideas" ||
-            Plots.includes(storyParams.plot)) && (
-            <StoryPrompt
-              handleClick={handleClick}
-              items={Plots}
-              section="plot"
-              follows="initial"
-            />
-          )}
           <StoryPrompt
             handleClick={handleClick}
-            heading="Genre"
-            subHeading="Select a genre for the story. You can opt for a different genre, or combine multiple genres by selecting 'Other' and typing them."
+            items={PlotsList}
+            section="plot"
+            displaysWhen={
+              storyParams.plot === "Give Me Ideas" ||
+              PlotsList.includes(storyParams.plot)
+            }
+          />
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Curveball"
+            subHeading="Add a 'spin' to the story (See 'Give me Ideas' for inspiration). You can pick from this list, change the genre, or just make up your own!"
+            items={twists}
+            section="twist"
+            displaysWhen={
+              storyParams.plot && storyParams.plot !== "Give Me Ideas"
+            }
+          />
+          <StoryPrompt
+            handleClick={handleClick}
+            items={TwistsList}
+            section="twist"
+            displaysWhen={
+              storyParams.twist === "Give Me Ideas" ||
+              TwistsList.includes(storyParams.twist)
+            }
+          />
+          <StoryPrompt
+            handleClick={handleClick}
             items={genres}
-            section="genre"
-            follows={storyParams.plot && storyParams.plot !== "Give Me Ideas"}
+            section="twist"
+            displaysWhen={
+              storyParams.twist === "Give Me Ideas" ||
+              TwistsList.includes(storyParams.twist)
+            }
           />
           <StoryPrompt
             handleClick={handleClick}
@@ -85,15 +107,15 @@ const App = () => {
             subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
             items={perspectives}
             section="perspective"
-            follows={storyParams.genre && storyParams.plot}
+            displaysWhen={storyParams.twist && storyParams.plot}
           />
           <StoryPrompt
             handleClick={handleSubmit}
             heading=""
             items={submit}
             section="submit"
-            follows={
-              storyParams.perspective && storyParams.genre && storyParams.plot
+            displaysWhen={
+              storyParams.perspective && storyParams.twist && storyParams.plot
             }
           />
         </>
@@ -109,7 +131,7 @@ const App = () => {
           subHeading="Choose from one the following actions to proceed:"
           items={story[0].options}
           section="choices"
-          follows={true}
+          displaysWhen={true}
         />
       )}
       <StoryPrompt
@@ -117,7 +139,7 @@ const App = () => {
         heading=""
         items={createNew}
         section="Create New"
-        follows={generated}
+        displaysWhen={generated}
       />
       <div className="h-36" />
       <div ref={bottom} />

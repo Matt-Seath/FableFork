@@ -3,10 +3,12 @@
         ["Create new", "Other", "Custom"],
     "plots": 
         ["Give Me Ideas", "Surprise Me", "Custom"],
+    "twists":
+        ["Give Me Ideas", "Change Genre", "Surprise Me", "Custom"],
     "perspectives": 
         ["1st Person", "3rd Person", "Default"],
     "genres": 
-        ["Default", "Comedy", "Horror", "Romance", "Other"],
+        ["Comedy", "Horror", "Romance", "Other"],
     "roles": 
         ["Antagonist", "Love Interest", "Other"],
     "submit":
