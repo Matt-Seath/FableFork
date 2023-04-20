@@ -1,14 +1,14 @@
 {
+    "ignoreList":
+        ["Give Me Ideas", "Other", ""],
     "inputFields": 
-        ["Create new", "Other", "Custom"],
+        ["Other", "Custom"],
     "plots": 
         ["Give Me Ideas", "Surprise Me", "Custom"],
     "twists":
-        ["Give Me Ideas", "Change Genre", "Surprise Me", "Custom"],
+        ["Give Me Ideas", "Surprise Me", "Custom"],
     "perspectives": 
         ["1st Person", "3rd Person", "Default"],
-    "genres": 
-        ["Comedy", "Horror", "Romance", "Other"],
     "roles": 
         ["Antagonist", "Love Interest", "Other"],
     "submit":
