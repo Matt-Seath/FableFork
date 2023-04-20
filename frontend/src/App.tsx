@@ -12,10 +12,8 @@ const App = () => {
     genre: "",
     perspective: "",
   });
-  const [story, setStory] = useState<GPTResponse>({
-    story: "",
-  });
-  const [generated, hasGenerated] = useState(false);
+  const [story, setStory] = useState<GPTResponse[]>([]);
+  const [generated, hasGenerated] = useState<boolean>(false);
   const bottom = useRef<null | HTMLDivElement>(null);
   const { plots, genres, perspectives, submit, createNew } = PromptParams;
 
@@ -32,16 +30,17 @@ const App = () => {
   const handleReset = () => {
     const blank = {} as StoryParams;
     setStoryParams(blank);
-    setStory({ story: "", choices: [] });
+    setStory([]);
     hasGenerated(false);
   };
 
-  async function handleSubmit() {
-    const query: string = Queries(storyParams);
+  async function handleSubmit(type: string, choice: string) {
+    const query: string = Queries(storyParams, type, choice);
     console.log(query);
+
     try {
       const response: GPTResponse = await InitialRequest(query);
-      setStory(response);
+      setStory([...story, response]);
       hasGenerated(true);
     } catch (error) {
       console.log(error);
@@ -99,16 +98,16 @@ const App = () => {
           />
         </>
       )}
-      {story.story && (
+      {story[0] && (
         <p className="text-center text-lg mt-36 mb-4 mx-12 p-8 text-white bg-slate-800">
-          {story.story}
+          {story[0].story}
         </p>
       )}
-      {story.choices && (
+      {story[0] && story[0].options && (
         <StoryPrompt
           handleClick={handleSubmit}
           subHeading="Choose from one the following actions to proceed:"
-          items={story.choices}
+          items={story[0].options}
           section="choices"
           follows={true}
         />

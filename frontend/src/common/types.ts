@@ -4,7 +4,8 @@ export type Writable<T> = {
 
 export interface GPTResponse {
   story: string;
-  choices?: string[];
+  options?: string[];
+  chosen?: string;
 }
 
 export interface Params {

@@ -2,7 +2,7 @@ import { StoryParams } from "../../common/types";
 import { randomItem } from "../../common/utils";
 import Plots from "../../assets/data/Plots.json"
 
-const Queries = ({plot, genre, perspective}: StoryParams) => {
+const Queries = ({plot, genre, perspective}: StoryParams, type: string, choice: string) => {
   let plotSegment: string = "";
   let genreSegment: string = "";
   let perspectiveSegment: string = "";
@@ -76,14 +76,20 @@ Chapter 3: The Investigation
 Here you may to replace the chapter titles and action to adjust the theme of the book. I noticed that the book I generated had a different story, but still had an "artifact" as the main plot. `   
 ;
 
-  const shortExample: string = `
-  Generate a short story ${plotSegment} ${genreSegment}, ${perspectiveSegment}
-  `
-  const test: string = `
-  Generate a short story segment ${plotSegment} ${genreSegment}, ${perspectiveSegment}. Your response will be a json object of the following key/value pairs and nothing else: "story": string, "choices": string[]. The generated story will be value of "story", and "choices" will contain an array of 3 choices the reader can choose from to continue the story.
-  `
+  const format: string = `Your response must be a raw json object in this EXACT format: {"story": string, "options": string[]}. Where "story" will contain the story text, and "options" will contain an array of 3 choices the reader can choose from to continue the story. Do not mention the options in the story text`
 
-  return test
+  const initialQuery: string = `Generate a short story segment ${plotSegment} ${genreSegment}, ${perspectiveSegment}. ${format} Subsequent queries will be the choice that you base the next segment of the story on.`
+
+  const followup: string = `Continue the story. remember, ${format} the user chose: ${choice}`
+
+  switch (type) {
+    case ("submit"):
+      return initialQuery
+    case ("choices"):
+      return followup
+    default:
+      return "error"
+  }
 }
 
 export default Queries;
