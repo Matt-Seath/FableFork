@@ -60,28 +60,19 @@ const App = () => {
         <>
           <StoryPrompt
             handleClick={handleClick}
-            heading="Story Type"
-            subHeading="Select the type of story to be written. Do you want a standard story, or an interactive experience where you choose your own adventure?"
-            items={type}
-            section="type"
-            displaysWhen={!generated}
-          />
-          <StoryPrompt
-            handleClick={handleClick}
             heading="Story Setting"
             subHeading="Define the setting/plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
             items={plots}
             section="plot"
-            displaysWhen={!ignoreList.includes(storyParams.type)}
+            displaysWhen={!generated}
           />
           <StoryPrompt
             handleClick={handleClick}
             items={PlotsList}
             section="plot"
             displaysWhen={
-              (storyParams.plot === "Give Me Ideas" ||
-                PlotsList.includes(storyParams.plot)) &&
-              !ignoreList.includes(storyParams.type)
+              storyParams.plot === "Give Me Ideas" ||
+              PlotsList.includes(storyParams.plot)
             }
           />
           <StoryPrompt
@@ -90,10 +81,7 @@ const App = () => {
             subHeading="Add a 'spin' to the story (See 'Give me Ideas' for inspiration). You can pick from this list, change the genre, or just make up your own!"
             items={twists}
             section="twist"
-            displaysWhen={
-              !ignoreList.includes(storyParams.plot) &&
-              !ignoreList.includes(storyParams.type)
-            }
+            displaysWhen={!ignoreList.includes(storyParams.plot)}
           />
           <StoryPrompt
             handleClick={handleClick}
@@ -102,8 +90,18 @@ const App = () => {
             displaysWhen={
               (storyParams.twist === "Give Me Ideas" ||
                 TwistsList.includes(storyParams.twist)) &&
-              !ignoreList.includes(storyParams.plot) &&
-              !ignoreList.includes(storyParams.type)
+              !ignoreList.includes(storyParams.plot)
+            }
+          />
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Story Type"
+            subHeading="Select the type of story to be written. Do you want a standard story, or an interactive experience where you choose your own adventure?"
+            items={type}
+            section="type"
+            displaysWhen={
+              !ignoreList.includes(storyParams.twist) &&
+              !ignoreList.includes(storyParams.plot)
             }
           />
           <StoryPrompt
@@ -112,10 +110,9 @@ const App = () => {
             items={submit}
             section="submit"
             displaysWhen={
+              !ignoreList.includes(storyParams.plot) &&
               !ignoreList.includes(storyParams.twist) &&
-              storyParams.type &&
-              storyParams.twist &&
-              storyParams.plot
+              storyParams.type
             }
           />
         </>
