@@ -18,7 +18,12 @@ import axios from "axios";
         },
       }
     );
-    return JSON.parse(response.data.choices[0].text)
+    try { 
+      return JSON.parse(response.data.choices[0].text) 
+    } catch (error) { 
+      return {story: `ERROR: ${error}, data: ${response.data.choices[0].text}`}
+    }
+
   };
 
 export default InitialRequest;

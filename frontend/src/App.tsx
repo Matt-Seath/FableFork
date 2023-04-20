@@ -30,8 +30,11 @@ const App = () => {
   };
 
   const handleReset = () => {
-    const blank = {} as StoryParams;
-    setStoryParams(blank);
+    setStoryParams({
+      plot: "",
+      twist: "",
+      perspective: "",
+    });
     setStory([]);
     hasGenerated(false);
   };
@@ -43,10 +46,10 @@ const App = () => {
     try {
       const response: GPTResponse = await InitialRequest(query);
       setStory([...story, response]);
-      hasGenerated(true);
     } catch (error) {
       console.log(error);
     }
+    hasGenerated(true);
   }
 
   useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth" }));

@@ -2,7 +2,7 @@ export function log() {
     console.log('log');
 }
 
-export const randomItem = <T>(list: T[]) => {
+export const getRandomListItem = <T>(list: T[]) => {
     const value = Math.floor(Math.random() * list.length)
    return list[value]
 }
