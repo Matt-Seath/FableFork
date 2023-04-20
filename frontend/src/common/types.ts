@@ -38,7 +38,7 @@ export interface Character {
 export interface StoryParams {
   plot: string;
   twist: string;
-  perspective: string;
+  type: string;
   characters?: Character[];
 }
 

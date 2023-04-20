@@ -7,8 +7,8 @@
         ["Give Me Ideas", "Surprise Me", "Custom"],
     "twists":
         ["Give Me Ideas", "Surprise Me", "Custom"],
-    "perspectives": 
-        ["1st Person", "3rd Person", "Default"],
+    "type": 
+        ["Continuous", "Interactive"],
     "roles": 
         ["Antagonist", "Love Interest", "Other"],
     "submit":

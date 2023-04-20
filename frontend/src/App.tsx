@@ -11,16 +11,15 @@ const App = () => {
   const [storyParams, setStoryParams] = useState<StoryParams>({
     plot: "",
     twist: "",
-    perspective: "",
+    type: "",
   });
   const [story, setStory] = useState<GPTResponse[]>([]);
   const [generated, hasGenerated] = useState<boolean>(false);
   const bottom = useRef<null | HTMLDivElement>(null);
-  const { ignoreList, plots, twists, perspectives, submit, createNew } =
-    PromptParams;
+  const { ignoreList, plots, twists, type, submit, createNew } = PromptParams;
 
   const handleClick = (param: string, choice: string) => {
-    if (["plot", "twist", "perspective"].includes(param)) {
+    if (["plot", "twist", "type"].includes(param)) {
       setStoryParams({
         ...storyParams,
         [param]: choice,
@@ -33,7 +32,7 @@ const App = () => {
     setStoryParams({
       plot: "",
       twist: "",
-      perspective: "",
+      type: "",
     });
     setStory([]);
     hasGenerated(false);
@@ -61,28 +60,40 @@ const App = () => {
         <>
           <StoryPrompt
             handleClick={handleClick}
-            heading="Story "
-            subHeading="Define the plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
+            heading="Story Type"
+            subHeading="Select the type of story to be written. Do you want a standard story, or an interactive experience where you choose your own adventure?"
+            items={type}
+            section="type"
+            displaysWhen={!generated}
+          />
+          <StoryPrompt
+            handleClick={handleClick}
+            heading="Story Setting"
+            subHeading="Define the setting/plot of the story. You can choose your own by referening a scene from a book/movie, or just make up your own!"
             items={plots}
             section="plot"
-            displaysWhen={!generated}
+            displaysWhen={!ignoreList.includes(storyParams.type)}
           />
           <StoryPrompt
             handleClick={handleClick}
             items={PlotsList}
             section="plot"
             displaysWhen={
-              storyParams.plot === "Give Me Ideas" ||
-              PlotsList.includes(storyParams.plot)
+              (storyParams.plot === "Give Me Ideas" ||
+                PlotsList.includes(storyParams.plot)) &&
+              !ignoreList.includes(storyParams.type)
             }
           />
           <StoryPrompt
             handleClick={handleClick}
-            heading="Curveball"
+            heading="Add a Twist"
             subHeading="Add a 'spin' to the story (See 'Give me Ideas' for inspiration). You can pick from this list, change the genre, or just make up your own!"
             items={twists}
             section="twist"
-            displaysWhen={!ignoreList.includes(storyParams.plot)}
+            displaysWhen={
+              !ignoreList.includes(storyParams.plot) &&
+              !ignoreList.includes(storyParams.type)
+            }
           />
           <StoryPrompt
             handleClick={handleClick}
@@ -91,18 +102,8 @@ const App = () => {
             displaysWhen={
               (storyParams.twist === "Give Me Ideas" ||
                 TwistsList.includes(storyParams.twist)) &&
-              !ignoreList.includes(storyParams.plot)
-            }
-          />
-          <StoryPrompt
-            handleClick={handleClick}
-            heading="Perspective"
-            subHeading="Select the perspective the story will be written from. Are you reading as the protagonist (1st person) or as a spectator (3rd person)?"
-            items={perspectives}
-            section="perspective"
-            displaysWhen={
-              !ignoreList.includes(storyParams.twist) &&
-              !ignoreList.includes(storyParams.plot)
+              !ignoreList.includes(storyParams.plot) &&
+              !ignoreList.includes(storyParams.type)
             }
           />
           <StoryPrompt
@@ -111,7 +112,10 @@ const App = () => {
             items={submit}
             section="submit"
             displaysWhen={
-              storyParams.perspective && storyParams.twist && storyParams.plot
+              !ignoreList.includes(storyParams.twist) &&
+              storyParams.type &&
+              storyParams.twist &&
+              storyParams.plot
             }
           />
         </>
